@@ -52,11 +52,17 @@ public class PactConsumerTest {
         }
 
         // Assert
+        // could also check for various keys to be present in the contract.
+        /*List<String> expectedKeys = Arrays.asList("page", "per_page", "total", "total_pages");
+
         response.then().statusCode(200);
+
+        Map<String, String> responseBody =  response.getBody().jsonPath().getMap("$");
+        assertThat(responseBody.keySet(), containsInAnyOrder(expectedKeys));*/
+
         assertTrue(response.getBody()
                 .jsonPath()
                 .getList("data.first_name")
                 .contains("George"));
-        //assertEquals(new Ok(), pactConsumerResult)
     }
 }
