@@ -1,6 +1,7 @@
-package com.sandeep.api.tests.serviceVirtualization.delayed;
+package com.sandeep.api.serviceVirtualization.delayed;
 
-import com.sandeep.api.tests.BaseAPITest;
+import com.sandeep.api.base.BaseAPITest;
+import com.sandeep.api.base.EndPoints;
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -13,7 +14,6 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static com.sandeep.api.base.EndPoints.UNKNOWN;
 import static io.restassured.http.ContentType.JSON;
 import static io.restassured.http.Method.GET;
 import static org.awaitility.Awaitility.await;
@@ -34,7 +34,7 @@ public class APIAwaitilityTest extends BaseAPITest {
                 new File("src/test/resources/test_data/mockData/listResourceResponse.json"),
                 StandardCharsets.UTF_8);
         // Arrange
-        wireMockServer.stubFor(get(urlMatching(UNKNOWN + "\\?delay=[0-9]+"))
+        wireMockServer.stubFor(get(urlMatching(EndPoints.UNKNOWN + "\\?delay=[0-9]+"))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withFixedDelay(3000)
@@ -47,7 +47,7 @@ public class APIAwaitilityTest extends BaseAPITest {
             .untilAsserted(() -> {
                 try {
                     response = apiBase
-                            .get_response(GET, UNKNOWN + "?delay=3")
+                            .get_response(GET, EndPoints.UNKNOWN + "?delay=3")
                             .andReturn();
                 } catch (NullPointerException e) {
                     log.error("Unable to initialize Response object as null was returned!");

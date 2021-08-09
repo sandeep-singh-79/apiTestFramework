@@ -1,8 +1,7 @@
-package com.sandeep.api.tests;
+package com.sandeep.api.base;
 
 
 import com.github.tomakehurst.wiremock.WireMockServer;
-import com.sandeep.api.base.ApiBase;
 import com.sandeep.api.config.FrameworkConfig;
 import com.sandeep.api.config.PropertyFileReader;
 import io.restassured.RestAssured;

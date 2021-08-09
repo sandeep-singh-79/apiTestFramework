@@ -1,4 +1,4 @@
-package com.sandeep.api.tests.contract.pact.util;
+package com.sandeep.api.contract.pact.util;
 
 import au.com.dius.pact.consumer.ConsumerPactBuilder;
 import au.com.dius.pact.consumer.dsl.PactDslJsonBody;

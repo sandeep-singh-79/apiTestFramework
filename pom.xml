@@ -6,7 +6,13 @@
 
     <groupId>com.sandeep</groupId>
     <artifactId>api-automation-framework</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>contract-tests</module>
+        <module>component-tests</module>
+        <module>api-core</module>
+    </modules>
 
     <properties>
         <logback.version>1.2.5</logback.version>
@@ -20,16 +26,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.awaitility</groupId>
-            <artifactId>awaitility</artifactId>
-            <version>4.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.tomakehurst</groupId>
-            <artifactId>wiremock-jre8</artifactId>
-            <version>2.29.1</version>
-        </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
@@ -67,11 +63,6 @@
         </dependency>
         <dependency>
             <groupId>com.aventstack</groupId>
-            <artifactId>extentreports-cucumber4-adapter</artifactId>
-            <version>1.2.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>5.0.8</version>
         </dependency>
@@ -91,12 +82,6 @@
             <version>4.4.0</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>au.com.dius.pact</groupId>
-            <artifactId>consumer</artifactId>
-            <version>4.2.9</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <profiles>
@@ -111,13 +96,9 @@
                         <configuration>
                             <systemPropertyVariables>
                                 <env>${env.dev}</env>
-                                <pact.rootDir>src/test/resources/pacts</pact.rootDir>
                             </systemPropertyVariables>
                             <argLine>-Xmx1024m</argLine>
                             <argLine>-XX:MaxPermSize=512m</argLine>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>./src/test/resources/testng_api_suite.xml</suiteXmlFile>
-                            </suiteXmlFiles>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -134,69 +115,32 @@
                         <configuration>
                             <systemPropertyVariables>
                                 <env>${env.qa}</env>
-                                <pact.rootDir>./src/test/resources/pacts</pact.rootDir>
                             </systemPropertyVariables>
                             <argLine>-Xmx1024m</argLine>
                             <argLine>-XX:MaxPermSize=512m</argLine>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>./src/test/resources/testng_api_suite.xml</suiteXmlFile>
-                            </suiteXmlFiles>
                         </configuration>
                     </plugin>
                 </plugins>
             </build>
         </profile>
-        <!--<profile>
-            <id>qa_bdd</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${surefire.version}</version>
-                        <configuration>
-                            &lt;!&ndash;<parallel>methods</parallel>
-                            <threadCount>3</threadCount>
-                            <perCoreThreadCount>false</perCoreThreadCount>
-                            <properties>
-                                <property>
-                                    <name>dataproviderthreadcount</name>
-                                    <value>3</value>
-                                </property>
-                            </properties>&ndash;&gt;
-                            <systemPropertyVariables>
-                                &lt;!&ndash; need to provide user, userpass & cucumber.options for tags while calling maven &ndash;&gt;
-                                <env>${env.qa}</env>
-                                <browser>${browser}</browser>
-                                <driverType>${driverType}</driverType>
-                                <headless>${headless}</headless>
-                            </systemPropertyVariables>
-                            <argLine>-Xmx1024m</argLine>
-                            <argLine>-XX:MaxPermSize=512m</argLine>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>./src/test/resources/testng_functional_suite.xml</suiteXmlFile>
-                            </suiteXmlFiles>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>-->
     </profiles>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <compilerArgs>
-                        <arg>-parameters</arg>
-                    </compilerArgs>
-                </configuration>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <compilerArgs>
+                            <arg>-parameters</arg>
+                        </compilerArgs>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 </project>

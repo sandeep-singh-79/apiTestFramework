@@ -1,6 +1,7 @@
-package com.sandeep.api.tests.serviceVirtualization;
+package com.sandeep.api.serviceVirtualization;
 
-import com.sandeep.api.tests.BaseAPITest;
+import com.sandeep.api.base.BaseAPITest;
+import com.sandeep.api.base.EndPoints;
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -12,7 +13,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static com.sandeep.api.base.EndPoints.USERS;
 import static io.restassured.http.ContentType.JSON;
 import static io.restassured.http.Method.GET;
 import static org.testng.Assert.assertTrue;
@@ -36,7 +36,7 @@ public class APIMockUsingWireMockTest extends BaseAPITest {
     @Test
     public void verifyForFirstNameInResponse() {
         // Arrange
-        wireMockServer.stubFor(get(urlEqualTo(USERS.toString()))
+        wireMockServer.stubFor(get(urlEqualTo(EndPoints.USERS.toString()))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", JSON.toString())
@@ -44,7 +44,7 @@ public class APIMockUsingWireMockTest extends BaseAPITest {
 
         // Action
         try {
-            response = apiBase.get_response(GET, USERS).andReturn();
+            response = apiBase.get_response(GET, EndPoints.USERS).andReturn();
         } catch (NullPointerException e) {
             log.error("Unable to initialize Response object as null was returned!");
         }
@@ -56,7 +56,7 @@ public class APIMockUsingWireMockTest extends BaseAPITest {
 
     @Test
     public void TestUserNotFoundHasStatusCode404() {
-        wireMockServer.stubFor(get(urlEqualTo(USERS.toString()))
+        wireMockServer.stubFor(get(urlEqualTo(EndPoints.USERS.toString()))
                 .willReturn(aResponse()
                         .withStatus(404)
                         .withHeader("Content-Type", JSON.toString())
@@ -65,7 +65,7 @@ public class APIMockUsingWireMockTest extends BaseAPITest {
 
         // Action
         try {
-            response = apiBase.get_response(GET, USERS).andReturn();
+            response = apiBase.get_response(GET, EndPoints.USERS).andReturn();
         } catch (NullPointerException e) {
             log.error("Unable to initialize Response object as null was returned!");
         }

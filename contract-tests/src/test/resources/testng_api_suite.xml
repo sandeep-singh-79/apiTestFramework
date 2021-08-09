@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Integration_Test_Suite" verbose="1">
+    <listeners>
+        <!--<listener class-name="RetryListener" />-->
+        <listener class-name="com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter"/>
+    </listeners>
+
+    <test name="Pact Contract Tests">
+        <classes>
+            <class name="com.sandeep.api.contract.pact.PactConsumerTest" />
+        </classes>
+    </test>
+</suite>

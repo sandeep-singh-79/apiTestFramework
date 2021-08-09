@@ -1,19 +1,18 @@
-package com.sandeep.api.tests.contract.pact;
+package com.sandeep.api.contract.pact;
 
 import au.com.dius.pact.consumer.PactVerificationResult;
 import au.com.dius.pact.consumer.model.MockProviderConfig;
 import au.com.dius.pact.core.model.RequestResponsePact;
 import com.sandeep.api.base.ApiBase;
-import com.sandeep.api.tests.contract.pact.util.PactUtil;
+import com.sandeep.api.base.EndPoints;
+import com.sandeep.api.contract.pact.util.PactUtil;
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Test;
 
 import static au.com.dius.pact.consumer.ConsumerPactRunnerKt.runConsumerTest;
 import static au.com.dius.pact.core.model.PactSpecVersion.V4;
-import static com.sandeep.api.base.EndPoints.USERS;
 import static io.restassured.http.Method.GET;
-import static java.lang.String.format;
 import static org.testng.Assert.assertTrue;
 
 @Slf4j
@@ -27,7 +26,7 @@ public class PactConsumerTest {
                 "reqResUserConsumer",
                 "reqResUserProvider",
                 "ReqRes user fetch test",
-                format("/api%s", USERS));
+                String.format("/api%s", EndPoints.USERS));
 
         MockProviderConfig pactConsumerConfig = MockProviderConfig.httpConfig("localhost",
                 8090,
@@ -39,7 +38,7 @@ public class PactConsumerTest {
                     // Action
                     try {
                         response = new ApiBase(mockServer.getUrl(), mockServer.getPort(), "/api")
-                                .get_response(GET, USERS)
+                                .get_response(GET, EndPoints.USERS)
                                 .andReturn();
                     } catch (NullPointerException e) {
                         log.error("Unable to initialize Response object as null was returned!");
