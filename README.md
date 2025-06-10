@@ -1,2 +1,2 @@
-[![CodeQL](https://github.com/sandeep-singh-79/apiTestFramework/actions/workflows/codeQualityChecks.yml/badge.svg)](https://github.com/sandeep-singh-79/apiTestFramework/actions/workflows/codeQualityChecks.yml)
+[![CodeQL](https://github.com/sandeep-singh-79/apiTestFramework/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/sandeep-singh-79/apiTestFramework/actions/workflows/github-code-scanning/codeql)
 [![maven docker CI](https://github.com/sandeep-singh-79/apiTestFramework/actions/workflows/testCI.yml/badge.svg)](https://github.com/sandeep-singh-79/apiTestFramework/actions/workflows/testCI.yml)
