@@ -9,13 +9,13 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <logback.version>1.5.17</logback.version>
+        <logback.version>1.5.19</logback.version>
         <slf4j.version>2.0.17</slf4j.version>
-        <restassured.version>5.5.1</restassured.version>
+        <restassured.version>5.5.6</restassured.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <env.dev>dev</env.dev>
         <env.qa>qa</env.qa>
-        <surefire.version>3.5.2</surefire.version>
+        <surefire.version>3.5.4</surefire.version>
         <java.version>17</java.version>
     </properties>
 
@@ -63,7 +63,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.38</version>
+            <version>1.18.42</version>
         </dependency>
         <dependency>
             <groupId>com.aventstack</groupId>
@@ -88,7 +88,7 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>json-schema-validator</artifactId>
-            <version>5.5.6</version>
+            <version>${restassured.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
