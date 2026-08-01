@@ -9,9 +9,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <logback.version>1.5.37</logback.version>
+        <logback.version>1.6.1</logback.version>
         <slf4j.version>2.0.18</slf4j.version>
-        <restassured.version>6.0.0</restassured.version>
+        <restassured.version>6.0.1</restassured.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <env.dev>dev</env.dev>
         <env.qa>qa</env.qa>
